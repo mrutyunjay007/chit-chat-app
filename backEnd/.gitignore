@@ -125,6 +125,11 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+# dotenv environment variables file
+.env
+.env.test
+.env.production
+
 # yarn v2
 .yarn/cache
 .yarn/unplugged
