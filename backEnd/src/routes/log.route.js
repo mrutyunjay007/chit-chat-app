@@ -1,8 +1,11 @@
 const express = require("express");
 const { loginController } = require("../controllers/log.controller");
+const User = require("../models/user.model");
+
 const {
   loginValidator,
 } = require("../middlewares/validation/loginValidator.middleware");
+
 const {
   ValidatorErrorChecker,
 } = require("../middlewares/validation/validatorErrorChecker.middleware");
