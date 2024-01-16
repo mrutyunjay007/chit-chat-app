@@ -1,7 +1,7 @@
 const { body } = require("express-validator");
 
 //LOG-IN VALIDATOR
-const loginValidation = [
+const loginValidator = [
   //Email validation
   body("email")
     .isEmail()
@@ -10,4 +10,4 @@ const loginValidation = [
 ];
 
 //export
-module.exports = { loginValidation };
+module.exports = { loginValidator };
