@@ -16,7 +16,7 @@ const log = express.Router();
 /*------------------------- CREATE ROUTES ------------------------ */
 /*  
     description :  user get log-in
-    api : /auth/login
+    api : /login
     method : POST 
     req : email,password
     res : User-{name,email} [200]/[401]/[401]  
@@ -27,7 +27,7 @@ log
 
 /* TODO: 
     description :  Logged out user 
-    api : /auth/logout
+    api : /logout
     method : POST [PROTECTED]
     req : **not done yet
     res : **not done yet 
