@@ -23,6 +23,21 @@ const UserSchema = new Schema(
     refreshToken: {
       type: String,
     },
+    ping: [
+      {
+        code: String,
+        connectionName: String,
+      },
+    ],
+    connectedUser: [
+      {
+        id: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+        name: String,
+      },
+    ],
   },
   { timestamps: true }
 );
