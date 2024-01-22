@@ -19,9 +19,9 @@ const MessageRouter = require("./routes/message.route");
 const NotificationRouter = require("./routes/notice.route");
 
 //routes declaration
-app.use("/", RegidterRouter); // routes -> getData/ login/ signin/ logout
-app.use("/", LogRouter); // routes -> getData/ login/ signin/ logout
-app.use("/auth", AuthRouter); // routes -> getData/ login/ signin/ logout
+app.use("/", RegidterRouter);
+app.use("/", LogRouter);
+app.use("/auth", AuthRouter);
 app.use("/user", UserRouter);
 app.use("/chat", ChatRouter);
 app.use("/message", MessageRouter);
