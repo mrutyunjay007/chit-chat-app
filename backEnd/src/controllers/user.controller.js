@@ -1,8 +1,9 @@
 //extranal import
-const isConnectionPresent = require("../Utility/isConnectionPresent");
+// const isConnectionPresent = require("../Utility/isConnectionPresent");
 
 //internal models imports
-const User = require("../models/userModel");
+const { default: mongoose } = require("mongoose");
+const User = require("../models/user.model");
 
 /*------------------------- CREATE HANDLERS ------------------------ */
 /*  
@@ -90,44 +91,160 @@ const addConnectionController = async (req, res) => {
     });
   }
 };
-/*  
-    description : get all connected connections 
-    api : /user/
-    method : GET [PROTECTED]
-    req : 
-    res : allConnection-[] [200]/[500]  
-*/
-const getConnectionController = async (req, res) => {
-  try {
-    const isconnected = await User.findById({
-      _id: req.userId,
-    });
 
+const getUserDataController = async (req, res) => {
+  try {
+    const user = await User.aggregate([
+      {
+        $match: {
+          _id: new mongoose.Types.ObjectId(req.userId),
+        },
+      },
+      {
+        $lookup: {
+          from: "chats",
+          localField: "_id",
+          foreignField: "admin",
+          pipeline: [
+            {
+              $lookup: {
+                from: "users",
+                localField: "member",
+                foreignField: "_id",
+                as: "member",
+                pipeline: [
+                  {
+                    $project: {
+                      userName: 1,
+                      fullName: 1,
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              $addFields: {
+                connection: {
+                  $arrayElemAt: ["$member", 0],
+                },
+              },
+            },
+            {
+              $project: {
+                connection: 1,
+              },
+            },
+          ],
+          as: "connections_as_member",
+        },
+      },
+      {
+        $lookup: {
+          from: "chats",
+          localField: "_id",
+          foreignField: "member",
+          pipeline: [
+            {
+              $lookup: {
+                from: "users",
+                localField: "admin",
+                foreignField: "_id",
+                as: "admin",
+                pipeline: [
+                  {
+                    $project: {
+                      userName: 1,
+                      fullName: 1,
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              $addFields: {
+                connection: {
+                  $arrayElemAt: ["$admin", 0],
+                },
+              },
+            },
+            {
+              $project: {
+                connection: 1,
+              },
+            },
+          ],
+          as: "connections_as_admin",
+        },
+      },
+      {
+        $project: {
+          fullName: 1,
+          userName: 1,
+          email: 1,
+          connections_as_member: 1,
+          connections_as_admin: 1,
+        },
+      },
+    ]);
+
+    if (!user) {
+      res.status(404).json({
+        success: false,
+        msg: "user not present",
+      });
+    }
     res.status(200).json({
       success: true,
-      allConnection: isconnected.connectedUser,
-      msg: "getting all connected user",
+      user: user[0],
+      msg: "user data fetched successfully!",
     });
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({
       success: false,
-      msg: "no connection found",
+      msg: "Unauthorized request",
     });
   }
 };
 
-/*  
-    description : get connections by it's Id 
-    api : /user/:connectionId
-    req : 
-    parameters : connection-id  
-    res : ** Not Done Yet **   
-*/
-const getConnectionByIdController = async (req, res) => {};
+const getUserOnlineStatusController = async (req, res) => {
+  try {
+    const isUserOnline = await User.findById(req.query.connectionId).select(
+      "online"
+    );
+
+    if (isUserOnline) {
+      if (isUserOnline.online) {
+        res.status(200).json({
+          success: true,
+          online: isUserOnline.online,
+          msg: "user is online",
+        });
+      } else {
+        res.status(200).json({
+          success: true,
+          online: isUserOnline.online,
+          msg: "user is offline",
+        });
+      }
+    } else {
+      res.status(404).json({
+        success: false,
+
+        msg: "user not found",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+
+      msg: "user is not available!",
+    });
+  }
+};
 
 //EXPORT USER-HANDLERS
 module.exports = {
   addConnectionController,
-  getConnectionController,
-  getConnectionByIdController,
+  getUserDataController,
+  getUserOnlineStatusController,
 };

@@ -1,12 +1,18 @@
 //extarnal imports
 const express = require("express");
 const protected = require("../middlewares/isLoggedIn.middleware");
+const upload = require("../middlewares/multer/multer.middleware");
 
 // Create Router
 const chat = express.Router();
 
 //IMP HANDLER
-const { createChatController } = require("../controllers/chat.controller");
+const {
+  createChatController,
+  sendMessageController,
+  searchChat,
+  sendImageController,
+} = require("../controllers/chat.controller");
 const { getChatDataController } = require("../controllers/chat.controller");
 
 /*------------------------- CREATE ROUTES ------------------------ */
@@ -25,6 +31,11 @@ chat.route("/createchat").post(protected, createChatController);
     res : messages [200]/[500]
 */
 chat.route("/chatdata").post(protected, getChatDataController);
+chat.route("/sendmessage").post(protected, sendMessageController);
+chat
+  .route("/sendImage")
+  .post(protected, upload.single("content"), sendImageController);
+chat.route("/search").get(protected, searchChat);
 
 //EXPORT CHAT-ROUTE
 module.exports = chat;

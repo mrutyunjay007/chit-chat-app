@@ -3,10 +3,7 @@ const { body } = require("express-validator");
 //LOG-IN VALIDATOR
 const loginValidator = [
   //Email validation
-  body("email")
-    .isEmail()
-    .withMessage("Must be a valid Email!")
-    .normalizeEmail(),
+  body("userName").isString().withMessage("Must be a valid UserName!"),
 ];
 
 //export

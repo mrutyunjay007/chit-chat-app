@@ -1,11 +1,21 @@
 const express = require("express");
 
-const { signUpControler } = require("../controllers/register.contoler");
+const {
+  signUpControler,
+  userNameUpdateControler,
+  loginController,
+  checkForUserNameControler,
+} = require("../controllers/register.contoler");
 
 // signUp Validater
 const {
   signUpValidator,
 } = require("../middlewares/validation/registerValidator.middleware");
+
+// logIn Validater
+const {
+  loginValidator,
+} = require("../middlewares/validation/loginValidator.middleware");
 
 //Error checker for validator
 const {
@@ -19,7 +29,7 @@ const register = express.Router();
 
 /*  
     description :  signUp to new user
-    api : /auth/signin
+    api : /signup
     method : POST
     req : name,email,password,cheetCode
     res : [201]/[500]
@@ -27,6 +37,30 @@ const register = express.Router();
 register
   .route("/signup")
   .post(signUpValidator, ValidatorErrorChecker, signUpControler);
+
+register.route("/signup/username").post(userNameUpdateControler);
+register.route("/signup/username").get(checkForUserNameControler);
+
+/*  
+    description :  user get log-in
+    api : /login
+    method : POST 
+    req : email,password
+    res : User-{name,email} [200]/[401]/[401]  
+*/
+register.route("/login").post(loginController);
+
+/* TODO: 
+    description :  Logged out user 
+    api : /logout
+    method : POST [PROTECTED]
+    req : **not done yet
+    res : **not done yet 
+*/
+register.route("/logout").post(async (req, res) => {
+  try {
+  } catch (error) {}
+});
 
 //EXPORT
 module.exports = register;

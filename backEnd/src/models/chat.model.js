@@ -1,17 +1,17 @@
+const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
 //Create Chat Schema
 const ChatSchema = new Schema(
   {
-    users: [
-      {
-        id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-        name: {
-          type: String,
-          require: true,
-        },
-      },
-    ],
+    admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    member: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   { timestamps: true }
 );

@@ -8,8 +8,12 @@ require("dotenv").config();
 // connecting DB -> Server
 const connectDB = async () => {
   try {
-    await connect(`${process.env.MONGO_CONNECTION_STRING}`);
+    const connectionInstance = await connect(
+      `${process.env.MONGO_CONNECTION_STRING}/${"chit-chat"}`
+    );
     console.log("MongoDB connection Successfull");
+    console.log(connectionInstance.connection.host);
+    console.log(connectionInstance.connection.id);
   } catch (error) {
     console.log("DB connection FAILED", error);
   }

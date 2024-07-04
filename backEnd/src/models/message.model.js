@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
 // create Message Schema
@@ -18,6 +19,9 @@ const MessageSchema = new Schema(
     receiverId: {
       type: Schema.Types.ObjectId,
       ref: "User",
+    },
+    isFile: {
+      type: Boolean,
     },
   },
   {

@@ -3,13 +3,13 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 //generating refresh-jwt Token
-const generateAccessToken = (_id, name, email) => {
+const generateAccessToken = (_id, fullName, userName) => {
   //generate Token
   const token = jwt.sign(
     {
       _id,
-      name,
-      email,
+      fullName,
+      userName,
     },
     process.env.ACCESS_JWT_SECRET,
     {

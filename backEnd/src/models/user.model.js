@@ -1,25 +1,32 @@
+const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
 // Create User Schema
 const UserSchema = new Schema(
   {
-    name: {
+    userName: {
       type: String,
-      require: true,
+      unique: true,
+      lowercase: true,
+      index: true,
+    },
+    fullName: {
+      type: String,
+      required: true,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
+      trim: true,
+      lowercase: true,
+      index: true,
     },
     password: {
       type: String,
       require: true,
     },
-    cheetCode: {
-      type: String,
-      unique: true,
-    },
+
     refreshToken: {
       type: String,
     },
@@ -29,16 +36,12 @@ const UserSchema = new Schema(
         connectionName: String,
       },
     ],
-    connectedUser: [
-      {
-        id: {
-          type: Schema.Types.ObjectId,
-          ref: "User",
-        },
-        name: String,
-      },
-    ],
+    online: Boolean,
+    realTimeId: {
+      type: String,
+    },
   },
+
   { timestamps: true }
 );
 

@@ -3,7 +3,7 @@ const { body } = require("express-validator");
 //SIGN-UP VALIDATOR
 const signUpValidator = [
   // Name validation
-  body("name")
+  body("fullName")
     .isString()
     .withMessage("Must be a valid name!")
     .isLength({ min: 3, max: 20 })
