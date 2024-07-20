@@ -3,10 +3,10 @@ import Nav from "./Nav";
 
 function SideBar() {
   return (
-    <div className="lg:flex flex-col gap-6 items-start pt-5 hidden   h-screen w-[72px]  border-r-2 dark:border-r-[1px]  border-s-slate-100 bg-white  dark:bg-background">
-      <span className=" font-bold w-full flex justify-center items-center text-center ">
-        {"ChitChat"}
-      </span>
+    <div className="w-[468px] h-[72px] pb-2 fixed bottom-0  border-t-2  border-r-2 border-slate-200">
+      {/* <span className=" font-bold w-full flex justify-center items-center text-center ">
+        {"chat"}
+      </span> */}
       <Nav></Nav>
     </div>
   );

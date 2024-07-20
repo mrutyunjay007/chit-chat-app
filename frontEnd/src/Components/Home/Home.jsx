@@ -156,11 +156,9 @@ function Home() {
   return (
     <div className="flex">
       <SideBar></SideBar>
-      {connectionList.length > 0 ? (
-        <ShowConnection connectionList={connectionList}></ShowConnection>
-      ) : (
-        "No chat"
-      )}
+
+      <ShowConnection connectionList={connectionList}></ShowConnection>
+
       {/* <ShowConnection></ShowConnection> */}
       <ChatContainer></ChatContainer>
       <BottomBar></BottomBar>

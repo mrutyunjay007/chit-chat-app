@@ -25,7 +25,7 @@ function Nav() {
   const dispatch = useDispatch();
 
   return (
-    <ul className=" flex lg:flex-col dark:bg-background lg:gap-5 justify-evenly items-center w-full bg-white">
+    <ul className=" flex h-full dark:bg-background lg:gap-5 justify-evenly items-center w-full bg-white">
       <li className=" cursor-pointer">
         <span
           onClick={() => {
