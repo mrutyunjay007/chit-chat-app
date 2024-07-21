@@ -38,6 +38,7 @@ function ChatContainer() {
           />
           {/* profile-pic */}
           <RiAccountCircleLine className=" cursor-pointer size-8"></RiAccountCircleLine>
+
           <div className="relative">
             {/* user-name */}
             <span className="   text-xl font-bold cursor-pointer p-0">

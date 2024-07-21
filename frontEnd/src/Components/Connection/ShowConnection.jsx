@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Connections from "./Connections";
 import { useDispatch, useSelector } from "react-redux";
 import Notifications from "../Notification/Notificatios";
-import { RiSearchLine } from "react-icons/ri";
-
+import TopBar from "./TopBar";
 import Search from "../Search/Search";
 // import SearchInput from "../Search/SearchInput";
-import { RemoveSearchedUser } from "../../Redux/Slices/SearchSlice";
+import {
+  ActOfSearching,
+  RemoveSearchedUser,
+} from "../../Redux/Slices/SearchSlice";
+import SearchInput from "../Search/SearchInput";
 
 function ShowConnection({ connectionList }) {
   const dispatch = useDispatch();
@@ -24,30 +27,38 @@ function ShowConnection({ connectionList }) {
     <div
       className={` ${
         !status ? "flex" : "hidden"
-      } lg:flex flex-col pt-5 gap-3 items-center  h-screen lg:w-[468px] md:px-10 lg:px-0  border-r-2 border-slate-200 w-full fixed top-0  left-0`}
+      } lg:flex flex-col pt-5  items-center  h-screen lg:w-[468px] md:px-10 lg:px-0  border-r-2 border-slate-200 w-full fixed top-0  left-0`}
     >
       {/* Input to search */}
       {/* <SearchInput></SearchInput> */}
       {/* TopBar */}
-      <div className="flex w-full justify-between items-center p-2 px-3">
-        <span className="font-bold text-lg">{"ChitChat"}</span>
-        <span className="flex justify-center items-center ">
-          <span>
-            <RiSearchLine className="size-7 cursor-pointer" />
-          </span>
-        </span>
-      </div>
+      <TopBar></TopBar>
 
       {/* show the connnections except the time of searching for existed or new chat */}
-      <div className=" flex flex-col gap-2 w-full p-2">
+      <div className=" flex flex-col gap-2  pt-3  w-full p-2">
         {seachedUser !== null ? (
-          // Show search
-          <Search
-            search={seachedUser}
-            searchDone={() => {
-              dispatch(RemoveSearchedUser());
-            }}
-          />
+          <>
+            <div className="w-full flex justify-end items-center px-3 pb-2 ">
+              <span
+                className="rounded-full border-2 flex justify-center items-center border-red-500 size-8 cursor-pointer"
+                onClick={() => {
+                  dispatch(RemoveSearchedUser());
+                  dispatch(ActOfSearching(false));
+                }}
+              >
+                <span className="text-lg font-bold text-center text-red-500">
+                  X
+                </span>
+              </span>
+            </div>
+            {/* // Show search */}
+            <Search
+              search={seachedUser}
+              searchDone={() => {
+                dispatch(RemoveSearchedUser());
+              }}
+            />
+          </>
         ) : // Show connections
 
         connectionList.length > 0 ? (

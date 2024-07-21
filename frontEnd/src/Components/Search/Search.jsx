@@ -51,8 +51,8 @@ function Search({ search, searchDone }) {
   }
   return (
     <div
-      className={`flex justify-center items-center w-full px-2 py-2 rounded-md gap-1 
-     bg-slate-300
+      className={`flex items-center gap-2 w-full p-4 rounded-lg border-2
+     border-slate-200
        cursor-pointer`}
       onClick={handelSearchedChat}
     >

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { SearchingUser } from "../../Redux/Slices/SearchSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { ActOfSearching, SearchingUser } from "../../Redux/Slices/SearchSlice";
 import axios from "axios";
+import { RiSearchLine } from "react-icons/ri";
 
-function SearchInput() {
+function SearchInput({ isSearching, handleSearching }) {
   const [searching, setSearching] = useState("");
+  const { searchAct } = useSelector((state) => state.SearchInfo);
 
   const dispatch = useDispatch();
 
@@ -27,22 +29,43 @@ function SearchInput() {
   };
 
   return (
-    <input
-      type="text"
-      placeholder="search..."
-      className="w-4/5 p-1 border-b-2 font border-s-slate-100 focus:outline-none focus:border-black "
-      value={searching}
-      onChange={(e) => {
-        e.preventDefault();
-        setSearching(e.target.value);
-      }}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          handelSearch(e.target.value);
-          setSearching("");
-        }
-      }}
-    />
+    <span
+      className={` ${
+        searchAct && "flex-1 pl-5 w-full"
+      }  justify-center items-center `}
+    >
+      <span
+        onClick={() => {
+          dispatch(ActOfSearching(true));
+        }}
+      >
+        <RiSearchLine
+          className={`size-7 cursor-pointer ${searchAct ? "hidden" : "block"}`}
+        />
+      </span>
+      <span
+        className={` flex duration-500 border-2 px-3 py-2 rounded-xl border-slate-500 ${
+          !searchAct ? "hidden w-0" : "block w-full "
+        }`}
+      >
+        <input
+          type="text"
+          placeholder="search..."
+          className=" w-full   focus:outline-none  "
+          value={searching}
+          onChange={(e) => {
+            e.preventDefault();
+            setSearching(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handelSearch(e.target.value);
+              setSearching("");
+            }
+          }}
+        />
+      </span>
+    </span>
   );
 }
 

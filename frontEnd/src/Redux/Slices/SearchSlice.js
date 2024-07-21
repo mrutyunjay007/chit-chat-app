@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   searchElement: null,
   seachedUser: null,
+  searchAct: false,
 };
 
 const searchSlice = createSlice({
@@ -23,6 +24,9 @@ const searchSlice = createSlice({
     RemoveSearchedUser(state) {
       state.seachedUser = null;
     },
+    ActOfSearching(state, action) {
+      state.searchAct = action.payload;
+    },
   },
 });
 
@@ -31,6 +35,7 @@ export const {
   RemoveSearchedElement,
   SearchingUser,
   RemoveSearchedUser,
+  ActOfSearching,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;
