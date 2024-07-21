@@ -24,7 +24,7 @@ function ShowConnection({ connectionList }) {
     <div
       className={` ${
         !status ? "flex" : "hidden"
-      } md:flex flex-col pt-5 gap-3 items-center  h-screen lg:w-[468px] md:w-[244px]  border-r-2 border-slate-200 w-full fixed top-0  left-0`}
+      } lg:flex flex-col pt-5 gap-3 items-center  h-screen lg:w-[468px] md:px-10 lg:px-0  border-r-2 border-slate-200 w-full fixed top-0  left-0`}
     >
       {/* Input to search */}
       {/* <SearchInput></SearchInput> */}

@@ -154,15 +154,19 @@ function Home() {
   }, [searchElement]);
 
   return (
-    <div className="flex">
-      <SideBar></SideBar>
+    <>
+      <div className="  w-full h-full">
+        <span>
+          <SideBar></SideBar>
 
-      <ShowConnection connectionList={connectionList}></ShowConnection>
+          <ShowConnection connectionList={connectionList}></ShowConnection>
+        </span>
 
-      {/* <ShowConnection></ShowConnection> */}
-      <ChatContainer></ChatContainer>
+        {/* <ShowConnection></ShowConnection> */}
+        <ChatContainer></ChatContainer>
+      </div>
       <BottomBar></BottomBar>
-    </div>
+    </>
   );
 }
 

@@ -15,8 +15,8 @@ function Connections({ connection, selected }) {
 
   return (
     <div
-      className={`flex items-center w-full px-2 py-2 rounded-md gap-1 ${
-        selected ? "bg-black" : "bg-slate-300"
+      className={`flex items-center gap-2 w-full p-4 rounded-lg border-2 ${
+        selected ? "bg-black border-black" : "bg-white border-slate-300"
       } cursor-pointer`}
       onClick={() => {
         dispatch(chatAct(true));
@@ -24,7 +24,7 @@ function Connections({ connection, selected }) {
         socket.emit("join_chat", { chatId: connection._id });
       }}
     >
-      <span className="flex items-center">
+      <span className="">
         <RiAccountCircleLine
           className={`size-8 ${selected ? "text-white" : "text-black"}`}
         ></RiAccountCircleLine>

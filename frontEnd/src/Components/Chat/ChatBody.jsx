@@ -275,7 +275,7 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
     );
 
   return (
-    <div className=" flex flex-col gap-4 w-full overflow-y-auto  h-[calc(100%-144px)] md:h-[calc(100%-215px)] lg:min-h-[calc(100%-150px)]  px-3 py-3">
+    <div className=" flex flex-col gap-4 w-full overflow-y-auto h-[calc(100%-242px)] lg:min-h-[calc(100%-150px)]  px-3 py-3">
       {messageCount > 24 && (
         <div ref={intersectionObserverRef}>{"Loading..."}</div>
       )}

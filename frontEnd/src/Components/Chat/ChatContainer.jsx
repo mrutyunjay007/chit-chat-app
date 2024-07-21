@@ -14,49 +14,58 @@ function ChatContainer() {
   const { sendingMessage } = useSelector((state) => state.MessageInfo);
   const dispatch = useDispatch();
 
-  return (
-    <div
-      className={` fixed  top-0 lg:left-[472px] lg:w-[calc(100%-472px)] md:left-[244px] md:w-[calc(100%-244px)] left-0 w-full h-[calc(100%-72px)] md:h-full px-2 ${
-        status ? "block" : "hidden"
-      } md:block`}
-    >
-      {/* Top Bar */}
-      <div className="flex gap-1 items-center h-[72px] w-full px-2  border-b-2 border-s-slate-200 ">
-        <RiArrowLeftSLine
-          className=" md:hidden size-8 cursor-pointer"
-          onClick={() => {
-            dispatch(chatAct(false));
-          }}
-        />
-        {/* profile-pic */}
-        <RiAccountCircleLine className=" cursor-pointer size-8"></RiAccountCircleLine>
-        <div className="relative">
-          {/* user-name */}
-          <span className="   text-xl font-bold cursor-pointer p-0">
-            {connectionUserName}
-          </span>
-
-          {/* online-offline status */}
-          <span
-            className={`absolute left-0 top-6 text-[10px]  font-semibold  p-0 ${
-              isConnectionOnline ? "text-green-600" : "text-slate-300"
-            }`}
-          >
-            {isConnectionOnline ? "online" : "off"}
-          </span>
+  if (status === false) {
+    return (
+      <div className={` hidden lg:block w-full pl-[468px] h-full`}>
+        <div className=" flex justify-center items-center w-full h-full bg-slate-white ">
+          <span className="text-lg font-medium text-slate-400 ">No chat</span>
         </div>
       </div>
+    );
+  }
+  return (
+    <div
+      className={` ${status ? "block" : "hidden"} w-full lg:pl-[468px] h-full`}
+    >
+      <div className={` w-full h-full flex flex-col bg-white`}>
+        {/* Top Bar */}
+        <div className="flex gap-1 items-center h-[5.1rem] w-full px-2  border-b-2 border-s-slate-200 ">
+          <RiArrowLeftSLine
+            className=" lg:hidden  size-8 cursor-pointer"
+            onClick={() => {
+              dispatch(chatAct(false));
+            }}
+          />
+          {/* profile-pic */}
+          <RiAccountCircleLine className=" cursor-pointer size-8"></RiAccountCircleLine>
+          <div className="relative">
+            {/* user-name */}
+            <span className="   text-xl font-bold cursor-pointer p-0">
+              {connectionUserName}
+            </span>
 
-      {/* Chat Body -> Mid */}
-      <ChatBody
-        sendingMessage={sendingMessage}
-        handelSendingMessage={() => {
-          dispatch(RemoveSedingMessage());
-        }}
-      ></ChatBody>
+            {/* online-offline status */}
+            <span
+              className={`absolute left-0 top-6 text-[10px]  font-semibold  p-0 ${
+                isConnectionOnline ? "text-green-600" : "text-slate-300"
+              }`}
+            >
+              {isConnectionOnline ? "online" : "off"}
+            </span>
+          </div>
+        </div>
 
-      {/* message write and send-> Bottom */}
-      <ChatInput></ChatInput>
+        {/* Chat Body -> Mid */}
+        <ChatBody
+          sendingMessage={sendingMessage}
+          handelSendingMessage={() => {
+            dispatch(RemoveSedingMessage());
+          }}
+        ></ChatBody>
+
+        {/* message write and send-> Bottom */}
+        <ChatInput></ChatInput>
+      </div>
     </div>
   );
 }
