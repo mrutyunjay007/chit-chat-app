@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import LoginSchema from "../../Schema/login.schema";
 import ButtonField from "./ButtonField";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
@@ -39,8 +39,9 @@ function Login() {
         })();
       },
     });
+
   return (
-    <div className="w-screen  h-screen flex justify-center items-center">
+    <div className="w-screen  h-screen flex flex-col gap-1 justify-center items-center">
       <div className=" w-96 px-4 py-6 border-2 border-slate-200 flex flex-col gap-6">
         <header className=" text-3xl">Login</header>
         <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -69,6 +70,13 @@ function Login() {
           <ButtonField btnName={"Login"}></ButtonField>
         </form>
       </div>
+
+      <Link to="/signup">
+        <span className="font-mono  text-slate-400 hover:text-slate-500 transition ease-linear cursor-pointer">
+          {" "}
+          create a new account
+        </span>
+      </Link>
     </div>
   );
 }

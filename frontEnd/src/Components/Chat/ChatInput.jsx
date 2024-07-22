@@ -76,14 +76,14 @@ function ChatInput() {
   };
 
   return (
-    <div className="w-full h-[5.1rem]  px-3  flex justify-center items-center gap-1 pb-2 bg-white">
+    <div className="w-full h-[5.1rem] px-1  absolute bottom-[5.1rem] lg:bottom-0 md:px-3 flex justify-center items-center   bg-white">
       {/* input section */}
-      <div className=" w-full h-full flex justify-between items-center border-2 border-s-slate-200 rounded ">
+      <div className=" w-full h-full flex justify-between items-center border-2  border-s-slate-200 rounded ">
         {/* write messages */}
         <input
           type="text"
           value={messageContent}
-          className=" h-full px-2 focus:outline-none "
+          className=" h-full w-full pl-2 focus:outline-none "
           placeholder="Message..."
           onChange={(e) => {
             e.preventDefault();
@@ -96,9 +96,9 @@ function ChatInput() {
             socket.emit("stop_typing", { chatId });
           }}
         />
-        <span className="flex gap-2 items-center justify-center">
+        <span className="h-full flex gap-2 items-center justify-center">
           {/* image attachment */}
-          <span className="px-2 gap-3  h-full flex items-center">
+          <span className="h-full flex items-center">
             <input
               ref={attachmentRef}
               type="file"
@@ -115,7 +115,7 @@ function ChatInput() {
 
           {/* send message button */}
           <span
-            className="p-5 px-10 h-full cursor-pointer md:bg-black  bg-[#ff3131] text-white text-xl font-bold rounded-r "
+            className=" w-28 h-full flex justify-center items-center cursor-pointer md:bg-black text-center bg-[#ff3131] text-white text-xl font-bold rounded-r "
             onClick={() => {
               if (messageContent.length > 0) {
                 dispatch(AddSendingMessageContent(messageContent));

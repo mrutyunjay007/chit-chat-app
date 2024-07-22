@@ -12,11 +12,13 @@ const signUpSlice = createSlice({
   reducers: {
     signUpData(state, action) {
       state.fullName = action.payload.fullName;
-      state.email = action.payload.email;
       state.password = action.payload.password;
+    },
+    signUpDataEmail(state, action) {
+      state.email = action.payload.email;
     },
   },
 });
 
-export const { signUpData } = signUpSlice.actions;
+export const { signUpData, signUpDataEmail } = signUpSlice.actions;
 export default signUpSlice.reducer;

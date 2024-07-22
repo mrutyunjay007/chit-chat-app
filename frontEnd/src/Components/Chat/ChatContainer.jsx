@@ -27,7 +27,7 @@ function ChatContainer() {
     <div
       className={` ${status ? "block" : "hidden"} w-full lg:pl-[468px] h-full`}
     >
-      <div className={` w-full h-full flex flex-col bg-white`}>
+      <div className={` w-full relative h-full flex flex-col bg-white`}>
         {/* Top Bar */}
         <div className="flex gap-1 items-center h-[5.1rem] w-full px-2  border-b-2 border-s-slate-200 ">
           <RiArrowLeftSLine

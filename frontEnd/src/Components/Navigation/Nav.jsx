@@ -26,7 +26,7 @@ function Nav() {
 
   return (
     <ul className=" flex h-full dark:bg-background lg:gap-5 justify-evenly items-center w-full bg-white">
-      <li className=" cursor-pointer">
+      {/* <li className=" cursor-pointer">
         <span
           onClick={() => {
             dispatch(CreatingChat());
@@ -40,7 +40,7 @@ function Nav() {
             <RiChatNewFill className="w-7 h-7" />
           )}
         </span>
-      </li>
+      </li> */}
       <li className=" cursor-pointer">
         <span
           onClick={() => {

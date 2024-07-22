@@ -156,11 +156,9 @@ function Home() {
   return (
     <>
       <div className="  w-full h-full">
-        <span>
-          <SideBar></SideBar>
+        <SideBar></SideBar>
 
-          <ShowConnection connectionList={connectionList}></ShowConnection>
-        </span>
+        <ShowConnection connectionList={connectionList}></ShowConnection>
 
         {/* <ShowConnection></ShowConnection> */}
         <ChatContainer></ChatContainer>
