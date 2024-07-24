@@ -16,6 +16,7 @@ import {
   ShowNewNotification,
 } from "../../Redux/Slices/NavSlice";
 import { chatAct } from "../../Redux/Slices/ChatSlice";
+import PopUpProfile from "../SmallComponents/PopUpProfile";
 
 function Nav() {
   const { isInChat, isCreatingChat, isInNotification, isInProfile } =
@@ -26,21 +27,7 @@ function Nav() {
 
   return (
     <ul className=" flex h-full dark:bg-background lg:gap-5 justify-evenly items-center w-full bg-white">
-      {/* <li className=" cursor-pointer">
-        <span
-          onClick={() => {
-            dispatch(CreatingChat());
-          }}
-        >
-          {!isCreatingChat ? (
-            // Add new chat icon with userName
-            <RiChatNewLine className="w-7 h-7" />
-          ) : (
-            // activated
-            <RiChatNewFill className="w-7 h-7" />
-          )}
-        </span>
-      </li> */}
+      {/* Chat */}
       <li className=" cursor-pointer">
         <span
           onClick={() => {
@@ -56,6 +43,8 @@ function Nav() {
           )}
         </span>
       </li>
+
+      {/* Notification */}
       <li className=" cursor-pointer">
         <span
           onClick={() => {
@@ -78,8 +67,11 @@ function Nav() {
           )}
         </span>
       </li>
+
+      {/* profile */}
       <li className=" cursor-pointer">
         <span
+          className="relative"
           onClick={() => {
             dispatch(InProfile());
           }}
@@ -91,6 +83,7 @@ function Nav() {
             /* activated */
             <RiAccountCircleFill className="w-7 h-7" />
           )}
+          {isInProfile && <PopUpProfile></PopUpProfile>}
         </span>
       </li>
     </ul>

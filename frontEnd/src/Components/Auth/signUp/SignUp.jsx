@@ -20,7 +20,8 @@ function SignUp() {
       },
       validationSchema: SignupSchema,
       onSubmit: (values) => {
-        dispatch(signUpData(values));
+        console.log(values);
+        dispatch(signUpData({ ...values }));
         navigate("/signup/email");
       },
     });
@@ -41,17 +42,6 @@ function SignUp() {
             handleChange={handleChange}
             handleBlur={handleBlur}
           ></InputField>
-          {/* 
-          <InputField
-            label={"Email"}
-            type={"email"}
-            name={"email"}
-            vlaue={values.email}
-            touch={touched.email}
-            error={errors.email}
-            handleChange={handleChange}
-            handleBlur={handleBlur}
-          ></InputField> */}
 
           <InputField
             label={"Password"}
@@ -63,7 +53,6 @@ function SignUp() {
             handleChange={handleChange}
             handleBlur={handleBlur}
           ></InputField>
-
           <ButtonField btnName={"Next"}></ButtonField>
         </form>
       </div>

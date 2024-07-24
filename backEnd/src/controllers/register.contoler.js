@@ -1,8 +1,11 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/user.model");
+const Validation = require("../models/validation.model");
 
 const generateRefreshToken = require("../utils/generateRefreshToken");
 const generateAccessToken = require("../utils/generateAccessToken");
+const otpGenerater = require("../utils/otpGenerater");
+const sendEmailBynodemailer = require("../utils/nodemailer");
 
 /*----------------------- CREATE REGISTER-CONTROLER ------------------------ */
 
@@ -25,11 +28,12 @@ const signUpControler = async (req, res) => {
   try {
     // get all data from req
     const { fullName, email, password, userName } = req.body;
+    console.log(req.body);
 
     //check user already exists or not
 
     const existedUser = await User.findOne({ userName });
-
+    console.log(existedUser);
     if (existedUser) {
       res.status(404).json({
         success: false,
@@ -220,6 +224,119 @@ const loginController = async (req, res) => {
   }
 };
 
+const checkForEmailController = async (req, res) => {
+  /*
+        -> check email availability in validation-collection
+          -> yes  -> send to validate
+          -> no   -> check user with same email
+                      -> yes ->  "email not available"
+                      -> no  ->  "email available"
+    */
+
+  try {
+    const { email } = req.body;
+
+    // check email availability in validation-collection
+    const validatingEmail = await Validation.findOne({ email });
+
+    if (validatingEmail) {
+      //send to validate
+      res.status(200).json({
+        success: true,
+        validate: true,
+        msg: "validate",
+      });
+    } else {
+      // check user with same email
+      const user = await User.findOne({ email });
+
+      if (user) {
+        // email not available
+        res.status(200).json({
+          success: true,
+          validate: false,
+          msg: "not availabe",
+        });
+      } else {
+        //email available
+        res.status(404).json({
+          success: false,
+          validate: false,
+          msg: "availabe",
+        });
+      }
+    }
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({
+      success: false,
+      msg: "Authentication failed!",
+    });
+  }
+};
+
+const EmailSendForValidationController = async (req, res) => {
+  /*
+        -> create otp and check otp availability
+            -> yes -> create new
+            -> no -> send email 
+    */
+  try {
+    const { email } = req.body;
+    console.log(email);
+    //create new otp
+    const otp = await otpGenerater(
+      Math.floor(Math.random() * (1000000 - 100000 + 1) + 100000)
+    );
+    console.log(otp);
+    //save in Validation
+    const varify = await Validation.create({ otp, email });
+    await varify.save();
+    console.log("hi");
+
+    const info = await sendEmailBynodemailer(email, otp);
+
+    res.status(200).json({
+      success: true,
+      info,
+      msg: "Varification successfull!",
+    });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({
+      success: false,
+      msg: "Authentication failed!",
+    });
+  }
+};
+
+const EmailVarificationController = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+
+    const varify = await Validation.findOne({ email, otp });
+
+    if (varify) {
+      res.status(200).json({
+        success: true,
+        varify,
+        msg: "Varification successfull!",
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        msg: "Varification failed!",
+      });
+    }
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({
+      success: false,
+      msg: "Varification failed!",
+    });
+  }
+};
+
 //EXPORT
 module.exports = {
   signUpControler,
@@ -227,4 +344,7 @@ module.exports = {
   checkForUserNameControler,
   loginController,
   generateJwtToken,
+  checkForEmailController,
+  EmailSendForValidationController,
+  EmailVarificationController,
 };

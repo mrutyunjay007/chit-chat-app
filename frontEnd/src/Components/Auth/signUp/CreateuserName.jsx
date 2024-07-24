@@ -21,25 +21,26 @@ function CreateuserName() {
     validationSchema: UserNameSchema,
     validateOnChange: true,
     onSubmit: (values) => {
-      (async () => {
-        try {
-          const config = {
-            header: {
-              "content-type": "applictation/json",
-            },
-          };
+      userNameAvailability &&
+        (async () => {
+          try {
+            const config = {
+              header: {
+                "content-type": "applictation/json",
+              },
+            };
 
-          const res = await axios.post(
-            "/api/v1/signup",
-            { ...signUpData, userName: values.userName },
-            config
-          );
-          console.log(res.data.msg);
-          navigate("/login");
-        } catch (error) {
-          console.log(error);
-        }
-      })();
+            const res = await axios.post(
+              "/api/v1/signup",
+              { ...signUpData, userName: values.userName, profilePic: "" },
+              config
+            );
+            console.log(res.data.msg);
+            navigate("/login");
+          } catch (error) {
+            console.log(error);
+          }
+        })();
     },
   });
 
@@ -62,7 +63,7 @@ function CreateuserName() {
             console.log(error.message);
           }
         })();
-      }, [1000]);
+      }, 1000);
     }
     return () => clearTimeout(timer);
   }, [values.userName, errors]);

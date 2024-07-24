@@ -5,6 +5,9 @@ const {
   userNameUpdateControler,
   loginController,
   checkForUserNameControler,
+  checkForEmailController,
+  EmailSendForValidationController,
+  EmailVarificationController,
 } = require("../controllers/register.contoler");
 
 // signUp Validater
@@ -34,10 +37,13 @@ const register = express.Router();
     req : name,email,password,cheetCode
     res : [201]/[500]
 */
-register
-  .route("/signup")
-  .post(signUpValidator, ValidatorErrorChecker, signUpControler);
+register.route("/signup").post(signUpControler);
 
+register.route("/signup/email/availabe").post(checkForEmailController);
+register
+  .route("/signup/email/send-varificationcode")
+  .post(EmailSendForValidationController);
+register.route("/signup/email/varify-email").post(EmailVarificationController);
 register.route("/signup/username").post(userNameUpdateControler);
 register.route("/signup/username").get(checkForUserNameControler);
 

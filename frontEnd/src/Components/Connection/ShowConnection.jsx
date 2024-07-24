@@ -35,7 +35,7 @@ function ShowConnection({ connectionList }) {
       <TopBar></TopBar>
 
       {/* show the connnections except the time of searching for existed or new chat */}
-      <div className=" flex flex-col gap-2  pt-3  w-full p-2">
+      <div className=" flex flex-col gap-2 border-t-2 rounded-2xl  border-slate-200 pt-3 h-full w-full p-2">
         {seachedUser !== null ? (
           <>
             <div className="w-full flex justify-end items-center px-3 pb-2 ">
@@ -70,7 +70,9 @@ function ShowConnection({ connectionList }) {
             ></Connections>
           ))
         ) : (
-          <span> No chat</span>
+          <span className="w-full h-full flex text-lg font-medium text-slate-400  justify-center items-center">
+            <span> No chat</span>
+          </span>
         )}
       </div>
 

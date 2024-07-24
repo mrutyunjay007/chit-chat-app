@@ -27,9 +27,9 @@ function ChatContainer() {
     <div
       className={` ${status ? "block" : "hidden"} w-full lg:pl-[468px] h-full`}
     >
-      <div className={` w-full relative h-full flex flex-col bg-white`}>
+      <div className={` w-full  h-full flex flex-col bg-white`}>
         {/* Top Bar */}
-        <div className="flex gap-1 items-center h-[5.1rem] w-full px-2  border-b-2 border-s-slate-200 ">
+        <div className="  flex gap-1 items-center h-[5.1rem] w-full px-2  border-b-2 border-s-slate-200 ">
           <RiArrowLeftSLine
             className=" lg:hidden  size-8 cursor-pointer"
             onClick={() => {
@@ -37,23 +37,19 @@ function ChatContainer() {
             }}
           />
           {/* profile-pic */}
-          <RiAccountCircleLine className=" cursor-pointer size-8"></RiAccountCircleLine>
-
           <div className="relative">
-            {/* user-name */}
-            <span className="   text-xl font-bold cursor-pointer p-0">
-              {connectionUserName}
-            </span>
-
+            <RiAccountCircleLine className=" cursor-pointer size-8"></RiAccountCircleLine>
             {/* online-offline status */}
             <span
-              className={`absolute left-0 top-6 text-[10px]  font-semibold  p-0 ${
-                isConnectionOnline ? "text-green-600" : "text-slate-300"
+              className={`absolute top-[1px] right-[1px] rounded-full size-[9px] border-2 border-white ${
+                isConnectionOnline ? "bg-green-600" : "bg-slate-400"
               }`}
-            >
-              {isConnectionOnline ? "online" : "off"}
-            </span>
+            ></span>
           </div>
+          {/* user-name */}
+          <span className="   text-xl font-bold cursor-pointer p-0">
+            {connectionUserName}
+          </span>
         </div>
 
         {/* Chat Body -> Mid */}

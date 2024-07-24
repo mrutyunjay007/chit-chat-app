@@ -6,8 +6,6 @@ const SignupSchema = Yup.object().shape({
     .max(50, "*too Long!")
     .required("*required"),
 
-  email: Yup.string().email("*invalid email").required("*required"),
-
   password: Yup.string()
     .min(8, "*password must be at least 8 characters")
     .matches(

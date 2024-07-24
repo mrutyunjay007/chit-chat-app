@@ -8,7 +8,7 @@ function TopBar() {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex w-full h-[5.1rem] justify-between items-center  px-5 md:px-3">
+    <div className="flex w-full h-[5.1rem] justify-between items-center   px-5 md:px-3">
       <span
         onClick={() => {
           dispatch(ActOfSearching(false));
@@ -17,7 +17,7 @@ function TopBar() {
       >
         <span className="font-bold text-xl hidden md:block">{"ChitChat"}</span>
         <span className=" block md:hidden">
-          <RiChatSmileLine className="size-10 text-slate-800" />
+          <RiChatSmileLine className="size-10 text-black" />
         </span>
       </span>
       <SearchInput></SearchInput>

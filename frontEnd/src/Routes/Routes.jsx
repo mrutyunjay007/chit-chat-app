@@ -14,11 +14,19 @@ import Email from "../Components/Auth/signUp/Email";
 import Validation from "../Components/Auth/signUp/Validation";
 import SignUpLayout from "../Components/Auth/signUp/Layout/SignUpLayout";
 import EmailLayout from "../Components/Auth/signUp/Layout/EmailLayout";
+import HomeLayout from "../Components/Home/HomeLayout";
+import EditProfile from "../Components/EditProfile/EditProfile";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="/home" element={<Home></Home>}></Route>
+      <Route path="/home" element={<HomeLayout></HomeLayout>}>
+        <Route index element={<Home></Home>} />
+        <Route
+          path="/home/profile"
+          element={<EditProfile></EditProfile>}
+        ></Route>
+      </Route>
 
       <Route path="/signup" element={<SignUpLayout></SignUpLayout>}>
         <Route index element={<SignUp></SignUp>}></Route>

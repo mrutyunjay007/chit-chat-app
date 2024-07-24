@@ -40,6 +40,7 @@ function Home() {
             userId: data.user._id,
             userFullName: data.user.fullName,
             userName: data.user.userName,
+            profilePic: data.user.profilePic,
           })
         );
 
@@ -155,7 +156,7 @@ function Home() {
 
   return (
     <>
-      <div className="  w-full h-full">
+      <div className="w-full h-full">
         <SideBar></SideBar>
 
         <ShowConnection connectionList={connectionList}></ShowConnection>
