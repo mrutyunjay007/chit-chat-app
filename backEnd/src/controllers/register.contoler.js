@@ -225,6 +225,43 @@ const loginController = async (req, res) => {
   }
 };
 
+const logOutController = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    await User.findByIdAndUpdate(
+      { _id: userId },
+      {
+        $unset: {
+          refreshToken: 1, // this removes the field from document
+        },
+      },
+      {
+        new: true,
+      }
+    );
+
+    const options = {
+      httpOnly: true,
+      secure: true,
+    };
+
+    res
+      .status(200)
+      .clearCookie("accessToken", options)
+      .clearCookie("refreshToken", options)
+      .json({
+        success: true,
+        msg: "logout successfully!",
+      });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: true,
+      msg: "logout failed!",
+    });
+  }
+};
+
 const checkForEmailController = async (req, res) => {
   /*
         -> check email availability in validation-collection
@@ -348,4 +385,5 @@ module.exports = {
   checkForEmailController,
   EmailSendForValidationController,
   EmailVarificationController,
+  logOutController,
 };

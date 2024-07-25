@@ -8,6 +8,7 @@ const {
   checkForEmailController,
   EmailSendForValidationController,
   EmailVarificationController,
+  logOutController,
 } = require("../controllers/register.contoler");
 
 // signUp Validater
@@ -63,10 +64,7 @@ register.route("/login").post(loginController);
     req : **not done yet
     res : **not done yet 
 */
-register.route("/logout").post(async (req, res) => {
-  try {
-  } catch (error) {}
-});
+register.route("/logout").post(logOutController);
 
 //EXPORT
 module.exports = register;
