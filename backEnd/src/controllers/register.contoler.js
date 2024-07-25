@@ -27,7 +27,7 @@ const signUpControler = async (req, res) => {
     */
   try {
     // get all data from req
-    const { fullName, email, password, userName } = req.body;
+    const { fullName, email, password, userName, profilePic } = req.body;
     console.log(req.body);
 
     //check user already exists or not
@@ -52,6 +52,7 @@ const signUpControler = async (req, res) => {
         email,
         password: hashedPassword,
         userName,
+        profilePic,
       });
 
       await user.save();

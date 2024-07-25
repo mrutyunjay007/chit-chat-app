@@ -4,6 +4,7 @@
 //internal models imports
 const { default: mongoose } = require("mongoose");
 const User = require("../models/user.model");
+const uploadOnCloudinary = require("../utils/couldinary");
 
 /*------------------------- CREATE HANDLERS ------------------------ */
 /*  
@@ -117,6 +118,7 @@ const getUserDataController = async (req, res) => {
                     $project: {
                       userName: 1,
                       fullName: 1,
+                      profilePic: 1,
                     },
                   },
                 ],
@@ -155,6 +157,7 @@ const getUserDataController = async (req, res) => {
                     $project: {
                       userName: 1,
                       fullName: 1,
+                      profilePic: 1,
                     },
                   },
                 ],
@@ -181,6 +184,7 @@ const getUserDataController = async (req, res) => {
           fullName: 1,
           userName: 1,
           email: 1,
+          profilePic: 1,
           connections_as_member: 1,
           connections_as_admin: 1,
         },
@@ -242,9 +246,51 @@ const getUserOnlineStatusController = async (req, res) => {
   }
 };
 
+const editUserProfilePicture = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const contentLocalPath = req.file.path;
+
+    //upload in cloudinary and get url
+    const content = await uploadOnCloudinary(contentLocalPath);
+
+    await User.findByIdAndUpdate({ _id: userId }, { profilePic: content.url });
+
+    res.status(200).json({
+      success: true,
+      url: content.url,
+      msg: "profile picture updated successfully!",
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({
+      success: false,
+      msg: "profile picture update fail!",
+    });
+  }
+};
+
+const updateUserFullName = async (req, res) => {
+  try {
+    const { userId, userFullName } = req.body;
+    await User.findByIdAndUpdate({ _id: userId }, { fullName: userFullName });
+    res.status(200).json({
+      success: true,
+      msg: "user full name update successfully!",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      msg: "user full name update failed!",
+    });
+  }
+};
+
 //EXPORT USER-HANDLERS
 module.exports = {
   addConnectionController,
   getUserDataController,
   getUserOnlineStatusController,
+  editUserProfilePicture,
+  updateUserFullName,
 };

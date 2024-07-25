@@ -20,11 +20,13 @@ const UserSchema = new Schema(
       unique: true,
       trim: true,
       lowercase: true,
-      index: true,
     },
     password: {
       type: String,
       require: true,
+    },
+    profilePic: {
+      type: String,
     },
 
     refreshToken: {

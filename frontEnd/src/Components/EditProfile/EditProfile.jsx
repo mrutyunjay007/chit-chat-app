@@ -41,11 +41,10 @@ function EditProfile() {
           } `}
         >
           {Load ? (
-            <span>
-              <Spiner size={8}></Spiner>
+            <span className="size-8">
+              <Spiner></Spiner>
             </span>
           ) : (
-            // <Spiner w={10} h={10} />
             <ProfilePic url={profilePic} w={"full"} h={"full"}></ProfilePic>
           )}
         </div>

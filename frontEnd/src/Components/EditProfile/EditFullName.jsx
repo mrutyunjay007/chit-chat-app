@@ -64,7 +64,13 @@ function EditFullName() {
                 setLoad(false);
               }}
             >
-              {Load ? <Spiner size={7}></Spiner> : <span>Save</span>}
+              {Load ? (
+                <span className="size-7">
+                  <Spiner></Spiner>
+                </span>
+              ) : (
+                <span>Save</span>
+              )}
             </div>
           </>
         )}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SearchInput from "../Search/SearchInput";
-import { RiChatSmileLine } from "react-icons/ri";
+import { RiChatSmileFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { ActOfSearching } from "../../Redux/Slices/SearchSlice";
 
@@ -15,9 +15,9 @@ function TopBar() {
         }}
         className="cursor-pointer"
       >
-        <span className="font-bold text-xl hidden md:block">{"ChitChat"}</span>
+        <span className="font-bold text-xl hidden  md:block">{"ChitChat"}</span>
         <span className=" block md:hidden">
-          <RiChatSmileLine className="size-10 text-black" />
+          <RiChatSmileFill className="size-10 text-[#ff3131] rounded-lg" />
         </span>
       </span>
       <SearchInput></SearchInput>

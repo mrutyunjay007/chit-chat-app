@@ -76,7 +76,7 @@ function ChatInput() {
   };
 
   return (
-    <div className="w-full h-[5.1rem] px-1  absolute bottom-[5.1rem] lg:bottom-0 md:px-3 flex justify-center items-center   bg-white">
+    <div className="w-full h-[5.1rem] px-1 lg:pb-1 lg:static absolute bottom-[5.1rem] lg:bottom-0 md:px-3 flex justify-center items-center   bg-white">
       {/* input section */}
       <div className=" w-full h-full flex justify-between items-center border-2  border-s-slate-200 rounded ">
         {/* write messages */}

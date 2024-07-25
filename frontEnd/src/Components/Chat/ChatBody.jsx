@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Message from "../Messages/Message";
+import Spiner from "../SmallComponents/Loaders/Spiner";
 import axios from "axios";
 import socket from "../../Config/socket";
 
@@ -263,8 +264,10 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
 
   if (loading)
     return (
-      <div className=" w-full h-[calc(100%-144px)] lg:min-h-[calc(100%-150px)]">
-        {"Loading..."}
+      <div className=" flex justify-center items-center w-full h-[calc(100%-144px)] lg:min-h-[calc(100%-150px)]">
+        <span className="size-20">
+          <Spiner size={20}></Spiner>
+        </span>
       </div>
     );
   if (error)

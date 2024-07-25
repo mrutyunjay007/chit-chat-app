@@ -10,7 +10,10 @@ const {
   addConnectionController,
   getUserDataController,
   getUserOnlineStatusController,
+  editUserProfilePicture,
+  updateUserFullName,
 } = require("../controllers/user.controller");
+const upload = require("../middlewares/multer/multer.middleware");
 
 /*------------------------- CREATE ROUTES ------------------------ */
 /*  
@@ -21,6 +24,10 @@ const {
 */
 // user.route("/addconnection").post(protected, addConnectionController);
 user.route("/").get(protected, getUserDataController);
+user.route("/update-full-name").post(protected, updateUserFullName);
+user
+  .route("/edit-profile-picture")
+  .post(protected, upload.single("profilePic"), editUserProfilePicture);
 user.route("/online").get(protected, getUserOnlineStatusController);
 
 //EXPORT USER-ROUTER

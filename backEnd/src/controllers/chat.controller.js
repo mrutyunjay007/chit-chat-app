@@ -279,7 +279,6 @@ const sendImageController = async (req, res) => {
 
     const { chatId, receiverId } = req.body;
 
-    // const contentLocalPath = req.file.path;
     const contentLocalPath = req.file.path;
     console.log(contentLocalPath);
 

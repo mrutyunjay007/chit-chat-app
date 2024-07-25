@@ -13,7 +13,7 @@ function Notificatios() {
     <div
       className={` ${
         !status ? "flex" : "hidden"
-      } md:flex flex-col pt-5 gap-3 items-center  h-screen lg:w-[400px] md:w-[244px] px-2  w-full fixed top-0 lg:left-[72px] left-0`}
+      } md:flex flex-col border-t-2 rounded-2xl  border-slate-200 pt-3  gap-3 items-center  h-screen px-2  w-full `}
     >
       {notificationCount > 0 ? (
         notifications.map((notification) => (
@@ -23,7 +23,11 @@ function Notificatios() {
           ></Notification>
         ))
       ) : (
-        <div>no notification</div>
+        <div className=" flex w-full h-full justify-center items-center">
+          <span className="text-lg font-medium text-slate-400">
+            {"No Notification"}
+          </span>
+        </div>
       )}
     </div>
   );

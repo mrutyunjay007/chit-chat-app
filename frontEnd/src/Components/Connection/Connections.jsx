@@ -3,6 +3,7 @@ import { RiAccountCircleLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { activatedChat, chatAct } from "../../Redux/Slices/ChatSlice";
 import socket from "../../Config/socket";
+import ProfilePic from "../SmallComponents/PofilePic";
 
 function Connections({ connection, selected }) {
   const dispatch = useDispatch();
@@ -24,12 +25,16 @@ function Connections({ connection, selected }) {
         socket.emit("join_chat", { chatId: connection._id });
       }}
     >
-      <span className="">
-        <RiAccountCircleLine
-          className={`size-8 ${selected ? "text-white" : "text-black"}`}
-        ></RiAccountCircleLine>
+      <span className={`size-7 ${selected ? "text-white" : "text-black"}`}>
+        <ProfilePic
+          w={"full"}
+          h={"full"}
+          url={connection.connection.profilePic}
+        ></ProfilePic>
       </span>
-      <span className={`size-8 ${selected ? "text-white" : "text-black"}`}>
+      <span
+        className={`font-bold size-7 ${selected ? "text-white" : "text-black"}`}
+      >
         {connection.connection.userName}
       </span>
       <span></span>

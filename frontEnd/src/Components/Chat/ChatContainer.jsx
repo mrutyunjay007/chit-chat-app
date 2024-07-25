@@ -8,13 +8,13 @@ import ChatInput from "./ChatInput";
 import { RemoveSedingMessage } from "../../Redux/Slices/MessageSlice";
 
 function ChatContainer() {
-  const { status, connectionUserName, isConnectionOnline } = useSelector(
-    (state) => state.ChatInfo
-  );
+  const { status, connectionUserName, chatId, isConnectionOnline } =
+    useSelector((state) => state.ChatInfo);
+
   const { sendingMessage } = useSelector((state) => state.MessageInfo);
   const dispatch = useDispatch();
 
-  if (status === false) {
+  if (chatId.length === 0) {
     return (
       <div className={` hidden lg:block w-full pl-[468px] h-full`}>
         <div className=" flex justify-center items-center w-full h-full bg-slate-white ">
@@ -25,7 +25,9 @@ function ChatContainer() {
   }
   return (
     <div
-      className={` ${status ? "block" : "hidden"} w-full lg:pl-[468px] h-full`}
+      className={` ${status ? "block" : "hidden"} lg:${
+        chatId.length > 0 ? "block" : "hidden"
+      } w-full lg:pl-[468px] h-full`}
     >
       <div className={` w-full  h-full flex flex-col bg-white`}>
         {/* Top Bar */}
