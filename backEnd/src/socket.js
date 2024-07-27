@@ -10,7 +10,12 @@ const server = require("http").createServer(app);
 const io = new Server(server, {
   pingTimeout: 20000,
   cors: {
-    origin: "https://chit-chat-rouge-rho.vercel.app",
+    origin: [
+      "https://chit-chat-rouge-rho.vercel.app",
+      "https://chit-chat-pbax5zdtx-mrutyunjay007s-projects.vercel.app",
+      "https://chit-chat-git-main-mrutyunjay007s-projects.vercel.app",
+      "https://chit-chat-pbax5zdtx-mrutyunjay007s-projects.vercel.app",
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   },
