@@ -14,6 +14,7 @@ function Layout() {
           navigater("/home");
         }
       } catch (error) {
+        console.log(error);
         if (error.response.status == 401) {
           navigater("/login");
         }
