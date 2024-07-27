@@ -12,7 +12,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "chit-chat-rouge-rho.vercel.app",
+    origin: "https://chit-chat-rouge-rho.vercel.app",
   })
 );
 
