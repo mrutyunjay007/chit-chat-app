@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 // Create APP
 const app = express();
@@ -8,6 +9,12 @@ const app = express();
 app.use(express.json());
 // for cookies
 app.use(cookieParser());
+
+app.use(
+  cors({
+    origin: "chit-chat-rouge-rho.vercel.app",
+  })
+);
 
 //routes import
 const RegisterRouter = require("./routes/register.route");
