@@ -12,6 +12,7 @@ const io = new Server(server, {
   cors: {
     origin: "chit-chat-app-gamma.vercel.app",
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
