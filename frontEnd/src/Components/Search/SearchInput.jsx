@@ -13,7 +13,7 @@ function SearchInput({ isSearching, handleSearching }) {
   const handelSearch = async (value) => {
     try {
       const { data } = await axios.get(
-        `api/v1/connection/search?userName=${value}`
+        `${import.meta.env.BASE_URL}/api/v1/connection/search?userName=${value}`
       );
       if (data.success) {
         dispatch(SearchingUser({ success: true, ...data.user }));

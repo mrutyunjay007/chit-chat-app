@@ -38,7 +38,7 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
 
     try {
       const { data } = await axios.post(
-        `/api/v1/chat/chatdata?page=${page}`,
+        `${import.meta.env.BASE_URL}/api/v1/chat/chatdata?page=${page}`,
         {
           chatId,
         },
@@ -138,7 +138,9 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
 
         try {
           const res = await axios.get(
-            `api/v1/user/online?connectionId=${connecetionId}`
+            `${
+              import.meta.env.BASE_URL
+            }/api/v1/user/online?connectionId=${connecetionId}`
           );
 
           if (res.data.success) {
@@ -146,7 +148,7 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
           }
 
           const { data } = await axios.post(
-            `/api/v1/chat/chatdata?page=${1}`,
+            `${import.meta.env.BASE_URL}/api/v1/chat/chatdata?page=${1}`,
 
             {
               chatId,
@@ -228,7 +230,7 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
           };
 
           const { data } = await axios.post(
-            "api/v1/chat/sendmessage",
+            `${import.meta.env.BASE_URL}/api/v1/chat/sendmessage`,
             {
               content: sendingMessage,
               chatId,

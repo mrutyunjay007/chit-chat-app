@@ -47,11 +47,15 @@ function ChatInput() {
         formData.append("receiverId", connecetionId);
 
         try {
-          const res = await axios.post("api/v1/chat/sendImage", formData, {
-            header: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
+          const res = await axios.post(
+            `${import.meta.env.BASE_URL}/api/v1/chat/sendImage`,
+            formData,
+            {
+              header: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
           console.log(res);
         } catch (error) {
           console.log(error);

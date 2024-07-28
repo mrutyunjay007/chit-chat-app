@@ -28,7 +28,9 @@ function Home() {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("/api/v1/user");
+      const { data } = await axios.get(
+        `${import.meta.env.BASE_URL}/api/v1/user`
+      );
 
       if (data.success) {
         setConnectionList([
@@ -53,7 +55,7 @@ function Home() {
     (async () => {
       try {
         const { data } = await axios.get(
-          "/https://chit-chat-app-x3yx.onrender.com/api/v1/notification"
+          `${import.meta.env.BASE_URL}/api/v1/notification`
         );
 
         if (data.success) {
@@ -86,7 +88,7 @@ function Home() {
 
         (async () => {
           const res = await axios.post(
-            "api/v1/notification/",
+            `${import.meta.env.BASE_URL}/api/v1/notification/`,
             {
               chatId: recivedMessage.chatId,
               receiverId: recivedMessage.receiverId,

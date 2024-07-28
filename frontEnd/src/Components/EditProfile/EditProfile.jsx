@@ -70,7 +70,9 @@ function EditProfile() {
 
                   try {
                     const { data } = await axios.post(
-                      "/api/v1/user/edit-profile-picture",
+                      `${
+                        import.meta.env.BASE_URL
+                      }/api/v1/user/edit-profile-picture`,
                       formData,
                       {
                         header: {

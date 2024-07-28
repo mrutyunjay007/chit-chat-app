@@ -10,7 +10,7 @@ function Layout() {
     (async () => {
       try {
         const { data } = await axios.get(
-          "https://chit-chat-app-x3yx.onrender.com/api/v1/auth"
+          `${import.meta.env.BASE_URL}/api/v1/auth`
         );
         if (data.success) {
           navigater("/home");
