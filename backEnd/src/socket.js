@@ -19,7 +19,6 @@ const io = new Server(server, {
 
 //CREATE NAME-SPACE
 const userStatus = io.of("/userstatus");
-// const cahtStatus = io.of("chatStatus");
 
 userStatus.on("connection", (socket) => {
   console.log("connected to userStatus socket");
