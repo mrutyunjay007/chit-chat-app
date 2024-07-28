@@ -26,7 +26,7 @@ function Login() {
             };
 
             const res = await axios.post(
-              "/api/v1/login",
+              "https://chit-chat-app-x3yx.onrender.com/api/v1/login",
               { userName: values.userName, password: values.password },
               config
             );
