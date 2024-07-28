@@ -16,7 +16,9 @@ function Search({ search, searchDone }) {
 
     try {
       const { data } = await axios.get(
-        `${import.meta.env.BASE_URL}/api/v1/chat/search?userId=${search._id}`
+        `${import.meta.env.VITE_BASE_URL}/api/v1/chat/search?userId=${
+          search._id
+        }`
       );
       console.log(data);
       if (data.success) {

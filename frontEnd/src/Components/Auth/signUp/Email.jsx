@@ -42,7 +42,7 @@ function Email() {
           try {
             // setLoad(true);
             const { data } = await axios.post(
-              `${import.meta.env.BASE_URL}/api/v1/signup/email/availabe`,
+              `${import.meta.env.VITE_BASE_URL}/api/v1/signup/email/availabe`,
               { email: values.email },
               config
             );
@@ -113,7 +113,9 @@ function Email() {
                 };
                 if (emailAvailable) {
                   const { data } = await axios.post(
-                    `${import.meta.env.BASE_URL}/api/v1/signup/email/send-varificationcode`,
+                    `${
+                      import.meta.env.VITE_BASE_URL
+                    }/api/v1/signup/email/send-varificationcode`,
                     { email: values.email },
                     config
                   );

@@ -31,7 +31,7 @@ function CreateuserName() {
             };
 
             const res = await axios.post(
-              `${import.meta.env.BASE_URL}/api/v1/signup`,
+              `${import.meta.env.VITE_BASE_URL}/api/v1/signup`,
               { ...signUpData, userName: values.userName, profilePic: "" },
               config
             );
@@ -54,9 +54,9 @@ function CreateuserName() {
           try {
             setLoading(true);
             const { data } = await axios.get(
-              `${import.meta.env.BASE_URL}/api/v1/signup/username?userName=${
-                values.userName
-              }`
+              `${
+                import.meta.env.VITE_BASE_URL
+              }/api/v1/signup/username?userName=${values.userName}`
             );
             console.log(data);
             setUserNameAvailability(data);

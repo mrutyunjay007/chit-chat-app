@@ -43,7 +43,9 @@ function Validation() {
           try {
             // setLoad(true);
             const { data } = await axios.post(
-              `${import.meta.env.BASE_URL}/api/v1/signup/email/varify-email`,
+              `${
+                import.meta.env.VITE_BASE_URL
+              }/api/v1/signup/email/varify-email`,
               { email, otp: values.varification },
               config
             );

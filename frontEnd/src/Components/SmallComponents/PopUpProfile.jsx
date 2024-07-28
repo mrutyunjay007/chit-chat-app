@@ -24,7 +24,7 @@ function PopUpProfile() {
           className="flex items-center gap-2"
           onClick={async () => {
             const { data } = await axios.post(
-              `${import.meta.env.BASE_URL}/api/v1/logout`,
+              `${import.meta.env.VITE_BASE_URL}/api/v1/logout`,
               { userId },
               {
                 header: {

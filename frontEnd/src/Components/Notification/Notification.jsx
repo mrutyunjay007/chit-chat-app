@@ -19,7 +19,7 @@ function Notification({ notification, index }) {
         (async () => {
           try {
             const { data } = await axios.post(
-              `${import.meta.env.BASE_URL}/api/v1/notification/delete`,
+              `${import.meta.env.VITE_BASE_URL}/api/v1/notification/delete`,
               {
                 ...notification,
               },

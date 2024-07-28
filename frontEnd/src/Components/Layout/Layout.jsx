@@ -10,7 +10,7 @@ function Layout() {
     (async () => {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.BASE_URL}/api/v1/auth`
+          `${import.meta.env.VITE_BASE_URL}/api/v1/auth`
         );
         if (data.success) {
           navigater("/home");

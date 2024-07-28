@@ -38,7 +38,7 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
 
     try {
       const { data } = await axios.post(
-        `${import.meta.env.BASE_URL}/api/v1/chat/chatdata?page=${page}`,
+        `${import.meta.env.VITE_BASE_URL}/api/v1/chat/chatdata?page=${page}`,
         {
           chatId,
         },
@@ -139,7 +139,7 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
         try {
           const res = await axios.get(
             `${
-              import.meta.env.BASE_URL
+              import.meta.env.VITE_BASE_URL
             }/api/v1/user/online?connectionId=${connecetionId}`
           );
 
@@ -148,7 +148,7 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
           }
 
           const { data } = await axios.post(
-            `${import.meta.env.BASE_URL}/api/v1/chat/chatdata?page=${1}`,
+            `${import.meta.env.VITE_BASE_URL}/api/v1/chat/chatdata?page=${1}`,
 
             {
               chatId,
@@ -230,7 +230,7 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
           };
 
           const { data } = await axios.post(
-            `${import.meta.env.BASE_URL}/api/v1/chat/sendmessage`,
+            `${import.meta.env.VITE_BASE_URL}/api/v1/chat/sendmessage`,
             {
               content: sendingMessage,
               chatId,

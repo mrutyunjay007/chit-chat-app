@@ -48,7 +48,7 @@ function ChatInput() {
 
         try {
           const res = await axios.post(
-            `${import.meta.env.BASE_URL}/api/v1/chat/sendImage`,
+            `${import.meta.env.VITE_BASE_URL}/api/v1/chat/sendImage`,
             formData,
             {
               header: {

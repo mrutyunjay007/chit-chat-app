@@ -29,7 +29,7 @@ function Home() {
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(
-        `${import.meta.env.BASE_URL}/api/v1/user`
+        `${import.meta.env.VITE_BASE_URL}/api/v1/user`
       );
 
       if (data.success) {
@@ -55,7 +55,7 @@ function Home() {
     (async () => {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.BASE_URL}/api/v1/notification`
+          `${import.meta.env.VITE_BASE_URL}/api/v1/notification`
         );
 
         if (data.success) {
@@ -88,7 +88,7 @@ function Home() {
 
         (async () => {
           const res = await axios.post(
-            `${import.meta.env.BASE_URL}/api/v1/notification/`,
+            `${import.meta.env.VITE_BASE_URL}/api/v1/notification/`,
             {
               chatId: recivedMessage.chatId,
               receiverId: recivedMessage.receiverId,

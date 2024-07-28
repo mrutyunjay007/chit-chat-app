@@ -45,7 +45,9 @@ function EditFullName() {
                 setLoad(true);
 
                 const { data } = await axios.post(
-                  `${import.meta.env.BASE_URL}/api/v1/user/update-full-name`,
+                  `${
+                    import.meta.env.VITE_BASE_URL
+                  }/api/v1/user/update-full-name`,
                   { userId: user.userId, userFullName: user.userFullName },
                   {
                     header: {
