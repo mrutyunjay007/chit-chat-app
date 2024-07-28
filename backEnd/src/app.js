@@ -12,12 +12,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: [
-      "https://chit-chat-rouge-rho.vercel.app",
-      "https://chit-chat-pbax5zdtx-mrutyunjay007s-projects.vercel.app",
-      "https://chit-chat-git-main-mrutyunjay007s-projects.vercel.app",
-      "https://chit-chat-pbax5zdtx-mrutyunjay007s-projects.vercel.app",
-    ],
+    origin: "https://chit-chat-app-frontend.onrender.com",
     methods: ["GET", "POST"],
   })
 );
