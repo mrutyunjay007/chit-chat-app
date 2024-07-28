@@ -9,7 +9,9 @@ function Layout() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get("/api/v1/auth");
+        const { data } = await axios.get(
+          "https://chit-chat-app-x3yx.onrender.com/api/v1/auth"
+        );
         if (data.success) {
           navigater("/home");
         }

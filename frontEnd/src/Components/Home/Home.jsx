@@ -52,7 +52,9 @@ function Home() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get("api/v1/notification");
+        const { data } = await axios.get(
+          "/https://chit-chat-app-x3yx.onrender.com/api/v1/notification"
+        );
 
         if (data.success) {
           const { notifications } = data;
