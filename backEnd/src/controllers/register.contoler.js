@@ -186,7 +186,8 @@ const loginController = async (req, res) => {
         // const maxAge = 24 * 60 * 60 * 1000;
 
         const options = {
-          secure: true,
+          httpOnly: true,
+          expires: new Date(Date.now() + 25892000000),
         };
         //send to client by cookies
         res
