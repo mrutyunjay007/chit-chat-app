@@ -192,7 +192,7 @@ const loginController = async (req, res) => {
         res
           .status(200)
           .cookie("accessToken", accessToken, options)
-          .cookie("refreshToken", refreshToken, options)
+          // .cookie("refreshToken", refreshToken, options)
           .json({
             success: true,
             User: {
