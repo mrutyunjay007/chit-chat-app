@@ -187,20 +187,21 @@ const loginController = async (req, res) => {
 
         const options = {
           httpOnly: true,
-          expires: new Date(Date.now() + 25892000000),
+          maxAge: 24 * 60 * 60 * 1000,
+          sameSite: "None",
         };
         //send to client by cookies
         res
           .status(200)
           .cookie("accessToken", accessToken, options)
-          // .cookie("refreshToken", refreshToken, options)
+          .cookie("refreshToken", refreshToken, options)
           .json({
             success: true,
             User: {
               fullName,
               userName,
             },
-            token: accessToken,
+
             msg: "login successfull!",
           });
       } else {
