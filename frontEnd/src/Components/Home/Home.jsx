@@ -37,7 +37,8 @@ function Home() {
             "Content-Type": "application/json",
             Authorization: `Beare ${token}`,
           },
-        }
+        },
+        { withCredentials: true }
       );
 
       if (data.success) {
