@@ -6,7 +6,7 @@ const isloggedin = async (req, res, next) => {
     const token =
       req.cookies?.accessToken ||
       req.header("Authorization")?.replace("Bearer ", "");
-    console.log(req);
+    console.log("req is :", req);
 
     if (!token) {
       res.status(401).json({
