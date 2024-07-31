@@ -183,24 +183,17 @@ const loginController = async (req, res) => {
           fullName,
           userName
         );
-        const maxAge = 24 * 60 * 60 * 1000;
+        // const maxAge = 24 * 60 * 60 * 1000;
+
+        const options = {
+          httpOnly: true,
+          secure: true,
+        };
         //send to client by cookies
         res
           .status(200)
-          .cookie("accessToken", accessToken, {
-            maxAge,
-            domain: "chit-chat-app-frontend.onrender.com",
-            httpOnly: true,
-            secure: true,
-            sameSite: "None",
-          })
-          .cookie("refreshToken", refreshToken, {
-            maxAge,
-
-            httpOnly: true,
-            secure: true,
-            sameSite: "None",
-          })
+          .cookie("accessToken", accessToken, options)
+          .cookie("refreshToken", refreshToken, options)
           .json({
             success: true,
             User: {
