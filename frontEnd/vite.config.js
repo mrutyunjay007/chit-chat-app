@@ -5,8 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   server: {
     proxy: {
-      // "/api": "https://chit-chat-app-x3yx.onrender.com",
-      "/api": "chit-chat-app-mmj3.vercel.app",
+      "/api": "https://chit-chat-app-x3yx.onrender.com",
       // "/api": "http://localhost:5000",
     },
   },

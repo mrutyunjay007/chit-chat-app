@@ -1,10 +1,10 @@
 import { io } from "socket.io-client";
 
-const socket = io("chit-chat-app-mmj3.vercel.app");
+const socket = io("https://chit-chat-app-x3yx.onrender.com");
 // const socket = io("http://localhost:5000");
 
 export const userOnlineStatusSocket = io(
-  "chit-chat-app-mmj3.vercel.app/userstatus"
+  "https://chit-chat-app-x3yx.onrender.com/userstatus"
   // "http://localhost:5000/userstatus"
 );
 
