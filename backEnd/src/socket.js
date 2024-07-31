@@ -13,7 +13,7 @@ const io = new Server(server, {
     origin: "https://chit-chat-app-frontend.onrender.com",
     // origin: "http://localhost:5173",
     // methods: ["GET", "POST"],
-    // credentials: true,
+    credentials: true,
     // allowedHeaders: ["Authorization", "Content-Type"],
   },
 });

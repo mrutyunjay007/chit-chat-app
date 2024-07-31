@@ -29,7 +29,10 @@ function Home() {
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/api/v1/user`
+        `${import.meta.env.VITE_BASE_URL}/api/v1/user`,
+        {
+          withCredentials: true, // Send cookies with request
+        }
       );
 
       if (data.success) {
