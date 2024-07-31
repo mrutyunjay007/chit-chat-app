@@ -190,12 +190,12 @@ const loginController = async (req, res) => {
           .cookie("accessToken", accessToken, {
             httpOnly: true,
             secure: true,
-            domain: ".onrender.com",
+            domain: "https://chit-chat-app-frontend.onrender.com",
           })
           .cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: true,
-            domain: ".onrender.com",
+            domain: "https://chit-chat-app-frontend.onrender.com",
           })
           .json({
             success: true,
