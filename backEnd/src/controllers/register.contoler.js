@@ -189,7 +189,7 @@ const loginController = async (req, res) => {
           .status(200)
           .cookie("accessToken", accessToken, {
             maxAge,
-
+            domain: "chit-chat-app-frontend.onrender.com",
             httpOnly: true,
             secure: true,
             sameSite: "None",
