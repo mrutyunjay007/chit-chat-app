@@ -190,12 +190,12 @@ const loginController = async (req, res) => {
           .cookie("accessToken", accessToken, {
             httpOnly: true,
             secure: true,
-            sameSite: "None",
+            domain: ".onrender.com",
           })
           .cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: "None",
+            domain: ".onrender.com",
           })
           .json({
             success: true,
