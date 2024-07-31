@@ -31,6 +31,7 @@ function Login() {
               config
             );
             if (res.data.success) {
+              localStorage.setItem("token", res.data.token);
               navigate("/home");
             }
           } catch (error) {

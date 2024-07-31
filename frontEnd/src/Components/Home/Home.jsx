@@ -28,10 +28,15 @@ function Home() {
 
   useEffect(() => {
     (async () => {
+      const token = localStorage.getItem("token");
+
       const { data } = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/api/v1/user`,
         {
-          withCredentials: true, // Send cookies with request
+          header: {
+            "Content-Type": "application/json",
+            Authorization: `Beare ${token}`,
+          },
         }
       );
 

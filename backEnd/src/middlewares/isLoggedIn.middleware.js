@@ -17,7 +17,7 @@ const isloggedin = async (req, res, next) => {
       return;
     }
 
-    const decode = jwt.verify(token, process.env.ACCESS_JWT_SECRET);
+    const decode = jwt.verify(token.accessToken, process.env.ACCESS_JWT_SECRET);
 
     const { _id, fullName, userName } = decode;
 

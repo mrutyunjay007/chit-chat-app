@@ -205,6 +205,7 @@ const loginController = async (req, res) => {
               fullName,
               userName,
             },
+            token: { accessToken, refreshToken },
             msg: "login successfull!",
           });
       } else {
