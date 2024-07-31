@@ -188,12 +188,10 @@ const loginController = async (req, res) => {
         res
           .status(200)
           .cookie("accessToken", accessToken, {
-            maxAge: maxAge,
             httpOnly: true,
             secure: true,
           })
           .cookie("refreshToken", refreshToken, {
-            maxAge,
             httpOnly: true,
             secure: true,
           })
