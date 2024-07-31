@@ -13,7 +13,7 @@ const generateAccessToken = (_id, fullName, userName) => {
     },
     process.env.ACCESS_JWT_SECRET,
     {
-      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+      expiresIn: JSON.stringify(process.env.ACCESS_TOKEN_EXPIRY),
     }
   );
 
