@@ -34,11 +34,11 @@ function Home() {
         `${import.meta.env.VITE_BASE_URL}/api/v1/user`,
         {
           header: {
-            "Content-Type": "application/json",
-            Authorization: `Beare ${token}`,
+            Authorization: `Bearer ${token}`,
+            // "Content-Type": "application/json",
           },
-        },
-        { withCredentials: true }
+        }
+        // { withCredentials: true }
       );
 
       if (data.success) {
