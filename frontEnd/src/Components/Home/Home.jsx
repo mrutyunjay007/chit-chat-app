@@ -35,7 +35,7 @@ function Home() {
         {
           header: {
             Authorization: `Bearer ${token}`,
-            // "Content-Type": "application/json",
+            "Content-Type": "application/json",
           },
         },
         { withCredentials: true }
