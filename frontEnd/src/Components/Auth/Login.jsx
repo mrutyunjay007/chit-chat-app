@@ -42,8 +42,8 @@ function Login() {
     });
 
   return (
-    <div className="w-screen  h-screen flex flex-col gap-1 justify-center items-center">
-      <div className=" w-96 px-4 py-6 border-2 border-slate-200 flex flex-col gap-6">
+    <div className="w-screen px-5 md:px-0  h-screen flex flex-col gap-1 justify-center items-center">
+      <div className=" w-full  md:w-96 px-4 py-6 border-2 border-slate-200 flex flex-col gap-6">
         <header className=" text-3xl">Login</header>
         <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
           <InputField

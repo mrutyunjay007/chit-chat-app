@@ -27,8 +27,8 @@ function SignUp() {
     });
 
   return (
-    <div className="w-screen  h-screen flex flex-col justify-center items-center">
-      <div className=" w-96 px-4 py-5 border-2 border-slate-200 flex flex-col gap-6">
+    <div className="w-screen px-5 md:px-0 h-screen flex flex-col justify-center items-center">
+      <div className="w-full  md:w-96 px-4 py-5 border-2 border-slate-200 flex flex-col gap-6">
         <header className=" text-3xl">SignUp</header>
 
         <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>

@@ -10,7 +10,7 @@ function PopUpProfile() {
   const userId = useSelector((state) => state.UserInfo.userId);
   const navigate = useNavigate();
   return (
-    <div className="absolute bottom-7 md:bottom-6 left-0  md:left-5 drop-shadow-lg  rounded-r-xl rounded-t-xl  p-3 flex justify-center bg-white border-2 border-slate-200 items-center">
+    <div className="absolute bottom-7 md:bottom-6 -left-6  md:left-5 drop-shadow-lg  rounded-r-xl rounded-t-xl  p-3 flex justify-center bg-white border-2 border-slate-200 items-center">
       <div className=" flex flex-col gap-2">
         <span
           className="flex items-center gap-2"
@@ -30,6 +30,7 @@ function PopUpProfile() {
               getToken()
             );
             if (data.success) {
+              localStorage.removeItem("token");
               navigate("/login");
             }
           }}
