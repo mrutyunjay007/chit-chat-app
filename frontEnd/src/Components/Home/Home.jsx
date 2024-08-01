@@ -14,6 +14,7 @@ import {
 } from "../../Redux/Slices/NotificationSlice";
 import { activatedChat, chatAct } from "../../Redux/Slices/ChatSlice";
 import { RemoveSearchedElement } from "../../Redux/Slices/SearchSlice";
+import getToken from "../../Config/getToken";
 
 function Home() {
   const dispatch = useDispatch();
@@ -28,16 +29,11 @@ function Home() {
 
   useEffect(() => {
     (async () => {
-      const token = localStorage.getItem("token");
+      const config = getToken();
 
       const { data } = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/api/v1/user`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        },
+        config,
         { withCredentials: true }
       );
 
