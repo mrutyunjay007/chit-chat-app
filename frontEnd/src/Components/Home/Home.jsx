@@ -37,8 +37,8 @@ function Home() {
             Authorization: `Bearer ${token}`,
             // "Content-Type": "application/json",
           },
-        }
-        // { withCredentials: true }
+        },
+        { withCredentials: true }
       );
 
       if (data.success) {
