@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { ConnectionElememtFromSearch } from "../../Redux/Slices/SearchSlice";
 import { chatAct } from "../../Redux/Slices/ChatSlice";
+import getToken from "../../Config/getToken";
 
 function Search({ search, searchDone }) {
   const dispatch = useDispatch();
@@ -18,7 +19,8 @@ function Search({ search, searchDone }) {
       const { data } = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/api/v1/chat/search?userId=${
           search._id
-        }`
+        }`,
+        getToken()
       );
       console.log(data);
       if (data.success) {

@@ -17,11 +17,6 @@ function ShowConnection({ connectionList }) {
   const { isInNotification } = useSelector((state) => state.Navigation);
   const { seachedUser } = useSelector((state) => state.SearchInfo);
 
-  // Show all Notifications
-  // if (isInNotification) {
-  //   return;
-  // }
-
   // Show all connections or search element
   return (
     <div

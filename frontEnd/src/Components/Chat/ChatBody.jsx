@@ -3,6 +3,7 @@ import Message from "../Messages/Message";
 import Spiner from "../SmallComponents/Loaders/Spiner";
 import axios from "axios";
 import socket from "../../Config/socket";
+import getToken from "../../Config/getToken";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RemoveImageMessage } from "../../Redux/Slices/MessageSlice";
@@ -42,7 +43,7 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
         {
           chatId,
         },
-        config
+        getToken()
       );
 
       if (data.success) {
@@ -130,17 +131,18 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
         setLoading(true);
         setMessages([]);
 
-        const config = {
-          header: {
-            "Content-Type": "application/json",
-          },
-        };
+        // const config = {
+        //   header: {
+        //     "Content-Type": "application/json",
+        //   },
+        // };
 
         try {
           const res = await axios.get(
             `${
               import.meta.env.VITE_BASE_URL
-            }/api/v1/user/online?connectionId=${connecetionId}`
+            }/api/v1/user/online?connectionId=${connecetionId}`,
+            getToken()
           );
 
           if (res.data.success) {
@@ -153,7 +155,7 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
             {
               chatId,
             },
-            config
+            getToken()
           );
 
           if (data.success) {
@@ -223,11 +225,11 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
 
       (async () => {
         try {
-          const config = {
-            header: {
-              "Content-Type": "application/json",
-            },
-          };
+          // const config = {
+          //   header: {
+          //     "Content-Type": "application/json",
+          //   },
+          // };
 
           const { data } = await axios.post(
             `${import.meta.env.VITE_BASE_URL}/api/v1/chat/sendmessage`,
@@ -236,7 +238,7 @@ function ChatBody({ sendingMessage, handelSendingMessage }) {
               chatId,
               receiverId: connecetionId,
             },
-            config
+            getToken()
           );
         } catch (error) {
           console.log(error);

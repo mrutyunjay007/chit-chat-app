@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import getToken from "../../Config/getToken";
 
 function Layout() {
   const navigater = useNavigate();
@@ -10,7 +11,8 @@ function Layout() {
     (async () => {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/api/v1/auth`
+          `${import.meta.env.VITE_BASE_URL}/api/v1/auth`,
+          getToken()
         );
         if (data.success) {
           navigater("/home");

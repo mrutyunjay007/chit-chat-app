@@ -47,11 +47,13 @@ function ChatInput() {
         formData.append("receiverId", connecetionId);
 
         try {
+          const token = localStorage.getItem("token");
           const res = await axios.post(
             `${import.meta.env.VITE_BASE_URL}/api/v1/chat/sendImage`,
             formData,
             {
-              header: {
+              headers: {
+                Authorization: `Bearer ${token}`,
                 "Content-Type": "multipart/form-data",
               },
             }

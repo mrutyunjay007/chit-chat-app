@@ -4,6 +4,7 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import { RiEditBoxLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import getToken from "../../Config/getToken";
 
 function PopUpProfile() {
   const userId = useSelector((state) => state.UserInfo.userId);
@@ -26,11 +27,7 @@ function PopUpProfile() {
             const { data } = await axios.post(
               `${import.meta.env.VITE_BASE_URL}/api/v1/logout`,
               { userId },
-              {
-                header: {
-                  "content-type": "applictation/json",
-                },
-              }
+              getToken()
             );
             if (data.success) {
               navigate("/login");

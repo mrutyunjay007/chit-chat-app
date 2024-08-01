@@ -7,6 +7,7 @@ import {
 } from "../../Redux/Slices/NotificationSlice";
 import { InChat } from "../../Redux/Slices/NavSlice";
 import axios from "axios";
+import getToken from "../../Config/getToken";
 
 function Notification({ notification, index }) {
   const { notificationCount } = useSelector((state) => state.NotificationInfo);
@@ -23,11 +24,7 @@ function Notification({ notification, index }) {
               {
                 ...notification,
               },
-              {
-                header: {
-                  "Content-Type": "application/json",
-                },
-              }
+              getToken()
             );
           } catch (error) {
             console.log(error);

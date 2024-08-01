@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ActOfSearching, SearchingUser } from "../../Redux/Slices/SearchSlice";
 import axios from "axios";
 import { RiSearchLine } from "react-icons/ri";
+import getToken from "../../Config/getToken";
 
 function SearchInput({ isSearching, handleSearching }) {
   const [searching, setSearching] = useState("");
@@ -15,7 +16,8 @@ function SearchInput({ isSearching, handleSearching }) {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_BASE_URL
-        }/api/v1/connection/search?userName=${value}`
+        }/api/v1/connection/search?userName=${value}`,
+        getToken()
       );
       if (data.success) {
         dispatch(SearchingUser({ success: true, ...data.user }));

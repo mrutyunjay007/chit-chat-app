@@ -64,6 +64,7 @@ function EditProfile() {
                 const compressedFile = await fileCompresser(e.target.files[0]);
 
                 (async () => {
+                  const token = localStorage.getItem("token");
                   const formData = new FormData();
                   formData.append("profilePic", compressedFile);
                   formData.append("userId", userId);
@@ -76,6 +77,7 @@ function EditProfile() {
                       formData,
                       {
                         header: {
+                          Authorization: `Bearer ${token}`,
                           "Content-Type": "multipart/form-data",
                         },
                       }

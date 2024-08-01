@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { upDateUserFullName } from "../../Redux/Slices/UserSlice";
 import axios from "axios";
 import Spiner from "../SmallComponents/Loaders/Spiner";
+import getToken from "../../Config/getToken";
 
 function EditFullName() {
   const user = useSelector((state) => state.UserInfo);
@@ -49,11 +50,7 @@ function EditFullName() {
                     import.meta.env.VITE_BASE_URL
                   }/api/v1/user/update-full-name`,
                   { userId: user.userId, userFullName: user.userFullName },
-                  {
-                    header: {
-                      "content-type": "applictation/json",
-                    },
-                  }
+                  getToken()
                 );
 
                 if (data.success) {

@@ -60,7 +60,8 @@ function Home() {
     (async () => {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/api/v1/notification`
+          `${import.meta.env.VITE_BASE_URL}/api/v1/notification`,
+          getToken()
         );
 
         if (data.success) {
