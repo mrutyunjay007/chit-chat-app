@@ -25,13 +25,13 @@ function Login() {
               },
             };
 
-            const res = await axios.post(
+            const { data } = await axios.post(
               `${import.meta.env.VITE_BASE_URL}/api/v1/login`,
               { userName: values.userName, password: values.password },
               config
             );
-            if (res.data.success) {
-              localStorage.setItem("token", res.data.token);
+            if (data.success) {
+              localStorage.setItem("token", data.token);
               navigate("/home");
             }
           } catch (error) {
