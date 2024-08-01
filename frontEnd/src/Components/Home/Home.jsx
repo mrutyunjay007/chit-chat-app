@@ -33,7 +33,7 @@ function Home() {
       const { data } = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/api/v1/user`,
         {
-          header: {
+          headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },

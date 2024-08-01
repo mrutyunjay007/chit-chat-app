@@ -10,11 +10,11 @@ const server = require("http").createServer(app);
 const io = new Server(server, {
   pingTimeout: 20000,
   cors: {
-    // origin: "https://chit-chat-app-frontend.onrender.com",
-    origin: "http://localhost:5173",
+    origin: "https://chit-chat-app-frontend.onrender.com",
+    // origin: "http://localhost:5173",
     methods: ["GET", "POST"],
     credentials: true,
-    allowedHeaders: ["Authorization", "Content-Type"],
+    // allowedHeaders: ["Authorization", "Content-Type"],
   },
 });
 
