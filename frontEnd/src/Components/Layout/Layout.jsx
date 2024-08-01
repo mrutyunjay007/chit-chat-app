@@ -8,22 +8,27 @@ function Layout() {
   const navigater = useNavigate();
 
   useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/api/v1/auth`,
-          getToken()
-        );
-        if (data.success) {
-          navigater("/home");
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      (async () => {
+        try {
+          const { data } = await axios.get(
+            `${import.meta.env.VITE_BASE_URL}/api/v1/auth`,
+            getToken()
+          );
+          if (data.success) {
+            navigater("/home");
+          }
+        } catch (error) {
+          console.log(error);
+          if (error.response.status == 401) {
+            navigater("/login");
+          }
         }
-      } catch (error) {
-        console.log(error);
-        if (error.response.status == 401) {
-          navigater("/login");
-        }
-      }
-    })();
+      })();
+    } else {
+      navigater("/login");
+    }
   }, []);
 
   return (
