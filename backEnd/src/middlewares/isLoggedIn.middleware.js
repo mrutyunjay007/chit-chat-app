@@ -10,7 +10,8 @@ const isloggedin = async (req, res, next) => {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
 
-    // console.log("req is :", req.header("Authorization"));
+    console.log("AuthHead:- ", authHeader);
+    console.log("Token :- ", token);
 
     if (token == null) {
       res.status(401).json({
