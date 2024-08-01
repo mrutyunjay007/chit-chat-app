@@ -3,13 +3,16 @@ require("dotenv").config();
 
 const isloggedin = async (req, res, next) => {
   try {
-    const token =
-      req.cookies?.accessToken ||
-      req.header("Authorization")?.replace("Bearer ", "");
-    console.log("req is :", req.header);
-    console.log(req.cookies);
+    // const token =
+    //   // req.cookies?.accessToken ||
+    //   req.header("Authorization")?.replace("Bearer ", "");
 
-    if (!token) {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+
+    // console.log("req is :", req.header("Authorization"));
+
+    if (token == null) {
       res.status(401).json({
         success: false,
         msg: "Unauthorized request",
@@ -25,6 +28,7 @@ const isloggedin = async (req, res, next) => {
     req.userId = _id;
     req.userName = userName;
     req.userFullName = fullName;
+
     next();
   } catch (err) {
     res.status(401).json({
