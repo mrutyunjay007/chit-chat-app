@@ -12,8 +12,8 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://chit-chat-app-frontend.onrender.com",
-    // origin: "https://localhost:5173",
+    // origin: "https://chit-chat-app-frontend.onrender.com",
+    origin: "https://localhost:5173",
     methods: ["GET", "POST"],
     allowedHeaders: ["Authorization", "Content-Type"],
     credentials: true,
